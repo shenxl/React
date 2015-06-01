@@ -1,0 +1,26 @@
+{
+  "name": "shenxl for React",
+  "version": "0.0.1",
+  "homepage": "https://github.com/shenxl/React",
+  "authors": [
+    "shenxl <shen.sxl@icloud.com>"
+  ],
+  "description": "学习React",
+  "main": "index.html",
+  "keywords": [
+    "React",
+    "study"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "react": "~0.13.3"
+  }
+}
