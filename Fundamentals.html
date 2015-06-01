@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="bower_components/react/react.js"></script>
+    <script src="bower_components/react/JSXTransformer.js"></script>
+</head>
+<body>
+<script type="text/jsx">
+    var App = React.createClass({
+
+//      设置默认值（组件类似angular的指令）
+        getDefaultProps:function(){
+          return {
+              txt:'Hi Shenxl',
+              age:0
+          }
+        },
+
+        getInitialState:function(){
+            return {
+                value:"I`m from State",
+                id:1
+            }
+        },
+
+        update :function(e){
+            this.setState({value: e.target.value})
+        },
+
+        propTypes:{
+            txt : React.PropTypes.string,
+            age : React.PropTypes.number.isRequired
+        },
+        render :function(){
+            var txt = this.state.value;
+            var age = this.props.age;
+            return (<div>
+                <Weight txt={txt} age={age} update={this.update}/>
+                <Weight txt={txt} age={age} update={this.update}/>
+                </div>
+            )
+        }
+    });
+
+    var Weight = React.createClass({
+
+        render : function(){
+            return <div><b>请输入内容</b>
+                <input type="text" onChange={this.props.update}/>
+                <h1>hi {this.props.txt}</h1>
+                <h2>I`m {this.props.age} haha...</h2>
+            </div>;
+        }
+    })
+
+
+    React.render(<App age="29" txt="shenxl Text"/>,document.body);
+</script>
+
+
+</body>
+</html>

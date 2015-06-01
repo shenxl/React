@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <script src="bower_components/react/react.js"></script>
+    <script src="bower_components/react/JSXTransformer.js"></script>
+</head>
+<body>
+<script type="text/jsx">
+    var App = React.createClass({
+        render:function(){
+            return <Button> I <Heart /> React</Button>
+        }
+    });
+
+    var Button = React.createClass({
+        render:function(){
+            return <button>{this.props.children}</button>
+        }
+    });
+
+    var Heart = React.createClass({
+        render:function(){
+            return <span className="glyphicon glyphicon-heart"></span>
+        }
+    })
+
+    React.render(<App />,document.body);
+</script>
+
+
+</body>
+</html>

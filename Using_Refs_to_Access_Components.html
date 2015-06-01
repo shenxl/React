@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="bower_components/react/react.js"></script>
+    <script src="bower_components/react/JSXTransformer.js"></script>
+</head>
+<body>
+<script type="text/jsx">
+    var App = React.createClass({
+
+        getInitialState:function(){
+            return {
+                red:128,
+                green:128,
+                blue:128
+            }
+        },
+
+        update :function(e){
+            this.setState({
+                red:this.refs.red.refs.slider.getDOMNode().value,
+                green:this.refs.green.refs.slider.getDOMNode().value,
+                blue:this.refs.blue.refs.slider.getDOMNode().value,
+
+            })
+        },
+
+        render :function(){
+            return (<div>
+                <Slider ref="red" update={this.update}/>
+                <label>red:{this.state.red}</label><br/>
+                <Slider ref="green" update={this.update}/>
+                <label>green:{this.state.green}</label><br/>
+                <Slider ref="blue" update={this.update}/>
+                <label>blue:{this.state.blue}</label>
+            </div>
+            )
+        }
+    });
+
+    var Slider = React.createClass({
+        render : function(){
+            return (<div>
+                <input ref="slider" type="range" min="0" max="255" onChange={this.props.update}/>
+            </div>)
+        }
+    })
+
+
+    React.render(<App age="29" txt="shenxl Text"/>,document.body);
+</script>
+
+
+</body>
+</html>
