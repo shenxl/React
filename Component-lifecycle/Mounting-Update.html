@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <script src="../bower_components/react/react.js"></script>
+    <script src="../bower_components/react/JSXTransformer.js"></script>
+</head>
+<body style="margin:20px">
+<script type="text/jsx">
+    var Button = React.createClass({
+        getInitialState:function(){
+            return { added:false};
+        },
+        update:function(){
+            this.setProps({val : this.props.val + 1});
+        },
+        componentWillReceiveProps:function(nextProps){
+            console.log(nextProps);
+            this.setState({added : nextProps.val % 5 === 0});
+        },
+        shouldComponentUpdate:function(nextProps,nextStats){
+//            console.log(nextProps);
+            console.log(nextStats);
+            return nextStats.added;
+        },
+        componentDidUpdate:function(preProps,preStats){
+            console.log('preProps:' + preProps.val);
+            console.log('preStats:' + preStats.added);
+        },
+        render:function(){
+            console.log('rendering')
+            return <button onClick={this.update}>{this.props.val}</button>
+        }
+    });
+
+    var App = React.createClass({
+        mount:function(){
+            React.render(<Button val={0} />,document.getElementById('app'));
+        },
+        unmount:function(){
+            React.unmountComponentAtNode(document.getElementById('app'));
+        },
+        render:function(){
+            return (
+                    <div>
+                        <button onClick={this.mount}>Mount</button>
+                        <button onClick={this.unmount}>Unmount</button>
+                        <div id="app"></div>
+                    </div>);
+        }
+    });
+
+
+    React.render(<App />,document.body);
+</script>
+
+</body>
+</html>
