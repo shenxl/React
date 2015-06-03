@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../bower_components/react/react.js"></script>
+    <script src="../bower_components/react/JSXTransformer.js"></script>
+</head>
+<body>
+<script type="text/jsx">
+    var App = React.createClass({
+
+        getInitialState:function(){
+            return {
+                red:128
+            }
+        },
+
+        update :function(e){
+            this.setState({
+                red:this.refs.red.refs.slider.getDOMNode().value
+            })
+        },
+
+        render :function(){
+            return (<div>
+                <NumInput ref="red"
+                          update={this.update}
+                          max={255}
+                          min={0}
+                          type="number"
+                          val={ + this.state.red}
+                          step={1}
+                          label='Red'
+                        />
+            </div>
+            )
+        }
+    });
+
+    var NumInput = React.createClass({
+
+        propTypes: {
+        	max: React.PropTypes.number,
+            min: React.PropTypes.number,
+            step: React.PropTypes.number,
+            label:React.PropTypes.string,
+            val: React.PropTypes.number,
+            type:React.PropTypes.oneOf(['number','range']),
+            update:React.PropTypes.func.isRequired
+        },
+        getInitialState: function() {
+        	return {
+        		min:0,
+                max:0,
+                step:1,
+                label:'',
+                val:0,
+                type:'range'
+        	};
+        },
+        render : function(){
+            var label = this.props.label !== '' ?
+                    <label>{this.props.label} {this.props.val}</label> : '';
+            return (<div>
+                <input ref="slider" 
+                       type= {this.props.type}
+                       min={this.props.min}
+                       max={this.props.max} 
+                       defaultValue={this.props.val}
+                       step={this.props.step}
+                       onChange={this.props.update} />
+                {label}
+            </div>)
+        }
+    })
+
+
+    React.render(<App age="29" txt="shenxl Text"/>,document.body);
+</script>
+
+
+</body>
+</html>
