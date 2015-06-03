@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../bower_components/react/react.js"></script>
+    <script src="../bower_components/react/JSXTransformer.js"></script>
+    <script src="../bower_components/react/react-with-addons.js"></script>
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+<div id="app"></div>
+
+<script type="text/jsx">
+    var App = React.createClass({
+
+        mixins:[React.addons.LinkedStateMixin],
+        getInitialState: function() {
+        	return {
+        		name:'',
+                email:'',
+                pwd:''
+        	};
+        },
+
+
+    	render: function() {
+    		return (
+            <div>
+                <form action="">
+                    <div>
+                        <input valueLink={this.linkState('name')}  type="text" placeholder="Name"/>
+                        <label>{this.state.name}</label>
+                    </div>
+                    <div>
+                        <input valueLink={this.linkState('email')} type="text" placeholder="Email"/>
+                        <label>{this.state.email}</label>
+                    </div>
+                    <div>
+                        <input valueLink={this.linkState('pwd')} type="text" placeholder="Password"/>
+                        <label>{this.state.pwd}</label>
+                    </div>
+
+                </form>
+                </div>
+    		);
+    	}
+    
+    });
+
+    React.render(<App />,document.body);
+</script>
+</body>
+</html>
